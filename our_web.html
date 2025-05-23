@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="CASS: The first large-scale dataset and model suite for cross-architecture GPU code transpilation.">
+    <meta name="keywords" content="CASS, GPU, CUDA, HIP, Transpilation, SASS, RDNA3">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CASS: Nvidia to AMD Transpilation with Data, Models, and Benchmark</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+        }
+
+        .publication-title {
+            font-family: 'Castoro', serif;
+        }
+
+        .publication-authors {
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .publication-authors .author-block {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .publication-authors .author-block sup {
+            font-size: 0.65rem;
+            vertical-align: super;
+        }
+
+        .hero.is-light {
+            background-color: #f5f5f5;
+        }
+
+        .link-block {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .external-link img {
+            box-shadow: none;
+        }
+
+        .cass {
+            font-weight: bold;
+            color: #1565c0;
+        }
+
+        .teaser .hero-body {
+            padding-top: 0;
+            padding-bottom: 3rem;
+        }
+
+        .teaser {
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .footer .icon-link {
+            font-size: 25px;
+            color: #000;
+        }
+
+        .footer .icon-link:hover {
+            color: #1565c0;
+        }
+
+        .results-table {
+            width: 100%;
+            margin: 2em 0;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        .results-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .pipeline-image {
+            max-width: 100%;
+            height: auto;
+            margin: 2em auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="#">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Related Research
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="#">
+                            GPU Transpilation
+                        </a>
+                        <a class="navbar-item" href="#">
+                            LLM Code Generation
+                        </a>
+                        <a class="navbar-item" href="#">
+                            Assembly Translation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <figure class="image is-128x128 is-inline-block mb-4">
+                            <img src="static\images\cass_logo.png" alt="CASS Logo">
+                        </figure>
+                        <h1 class="title is-1 publication-title">CASS: Nvidia to AMD Transpilation with Data, Models,
+                            and Benchmark</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="#">Ahmed Heakl</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="#">Gustavo Bertolo Stahl</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="#">Sarim Hashmi</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="#">Seung Hun Eddie Han</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="#">Salman Khan</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="#">Abdulrahman Mahmoud</a><sup>1</sup>
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>MBZUAI, Abu Dhabi</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <!-- Video Link. -->
+                                <span class="link-block">
+                                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-youtube"></i>
+                                        </span>
+                                        <span>Video</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/cass-project/cass"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <!-- Dataset Link. -->
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/cass-project/cass"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-database"></i>
+                                        </span>
+                                        <span>Dataset</span>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <figure class="image">
+                    <img src="static\images\main_cass.drawio-page-001.jpg" alt="CASS Pipeline">
+                </figure>
+                <h2 class="subtitle has-text-centered">
+                    <span class="cass">CASS</span> is the first large-scale dataset and model suite for
+                    cross-architecture GPU code transpilation, targeting both source-level (CUDA ↔ HIP) and
+                    assembly-level (Nvidia SASS ↔ AMD RDNA3) translation.
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We introduce CASS, the first large-scale dataset and model suite for cross-architecture GPU
+                            code transpilation, targeting both source-level (CUDA ↔ HIP) and assembly-level (Nvidia SASS
+                            ↔ AMD RDNA3) translation.
+                        </p>
+                        <p>
+                            The dataset comprises 70k verified code pairs across host and device, addressing a critical
+                            gap in low-level GPU code portability. Leveraging this resource, we train the CASS family of
+                            domain-specific language models, achieving 95% source translation accuracy and 37.5%
+                            assembly translation accuracy, substantially outperforming commercial baselines such as
+                            GPT-4o, Claude, and Hipify.
+                        </p>
+                        <p>
+                            Our generated code matches native performance in over 85% of test cases, preserving runtime
+                            and memory behavior. To support rigorous evaluation, we introduce CASS-Bench, a curated
+                            benchmark spanning 16 GPU domains with ground-truth execution. All data, models, and
+                            evaluation tools are released as open source to foster progress in GPU compiler tooling,
+                            binary compatibility, and LLM-guided hardware translation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- CASS Dataset. -->
+            <div class="columns is-centered">
+                <div class="column">
+                    <h2 class="title is-3">CASS Dataset</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            CASS is the first dataset to enable source- and assembly-level translation research for GPU
+                            architectures, comprising 70k semantically aligned CUDA–HIP source pairs and their
+                            corresponding host and device assemblies.
+                        </p>
+                        <figure class="image">
+                            <img src="static\images\main_cass-distribution.drawio_page-0001.jpg" alt="Dataset Composition"
+                                class="pipeline-image">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <!--/ CASS Dataset. -->
+
+            <!-- Results. -->
+            <div class="columns is-centered">
+                <div class="column">
+                    <h2 class="title is-3">Results</h2>
+
+                    <h3 class="title is-4">Performance Comparison</h3>
+                    <div class="content has-text-justified">
+                        <p>
+                            Our CASS-7B model significantly outperforms existing tools and LLMs in both source-to-source
+                            and assembly-to-assembly translation tasks.
+                        </p>
+                    </div>
+
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth results-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Assembly Accuracy (%)</th>
+                                <th>Source-to-Source Accuracy (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ZLUDA</td>
+                                <td>2.5%</td>
+                                <td>27.5%</td>
+                            </tr>
+                            <tr>
+                                <td>Hipify</td>
+                                <td>-</td>
+                                <td>87.5%</td>
+                            </tr>
+                            <tr>
+                                <td>GPT-4o</td>
+                                <td>0%</td>
+                                <td>90.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Gemini-2.0-Flash</td>
+                                <td>0%</td>
+                                <td>80.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Claude-3.7</td>
+                                <td>0%</td>
+                                <td>90.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Qwen2.5-Coder-32B</td>
+                                <td>25.0%</td>
+                                <td>85.0%</td>
+                            </tr>
+                            <tr>
+                                <td>CASS-1.5B</td>
+                                <td>12.5%</td>
+                                <td>90.0%</td>
+                            </tr>
+                            <tr>
+                                <td>CASS-3B</td>
+                                <td>20.0%</td>
+                                <td>92.5%</td>
+                            </tr>
+                            <tr>
+                                <td class="has-text-weight-bold">CASS-7B</td>
+                                <td class="has-text-weight-bold">37.5%</td>
+                                <td class="has-text-weight-bold">95.0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="title is-4">Ablation Study</h3>
+                    <div class="content has-text-justified">
+                        <p>
+                            Our ablation studies demonstrate the contribution of different data sources and techniques
+                            to the overall performance of CASS models.
+                        </p>
+                    </div>
+
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth results-table">
+                        <thead>
+                            <tr>
+                                <th>Experiment</th>
+                                <th>Source Accuracy</th>
+                                <th>Assembly Accuracy</th>
+                                <th>Δ Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Stack subset</td>
+                                <td>87.5%</td>
+                                <td>17.5%</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>+Synthetic</td>
+                                <td>95.0%</td>
+                                <td>30.0%</td>
+                                <td>+12.5%</td>
+                            </tr>
+                            <tr>
+                                <td>+OpenCL</td>
+                                <td>95.0%</td>
+                                <td>32.5%</td>
+                                <td>+2.5%</td>
+                            </tr>
+                            <tr>
+                                <td>+RoPE Extrapolation</td>
+                                <td>95.0%</td>
+                                <td>37.5%</td>
+                                <td>+5.0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--/ Results. -->
+
+            <!-- CASS-Bench. -->
+            <div class="columns is-centered">
+                <div class="column">
+                    <h2 class="title is-3">CASS-Bench</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            CASS-Bench is a 40-sample evaluation suite spanning 16 GPU-centric domains, each
+                            represented
+                            by 1-5 curated prompts. The benchmark includes parallel algorithms, image processing,
+                            scientific computing, linear algebra, deep learning, and more.
+                        </p>
+                        <figure class="image">
+                            <img src="static\images\cuda_prompts_by_category_page-0001.jpg" alt="CASS-Bench Domains" class="pipeline-image">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <!--/ CASS-Bench. -->
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@article{heakl2025cass,
+  author    = {Heakl, Ahmed and Stahl, Gustavo Bertolo and Hashmi, Sarim and Han, Seung Hun Eddie and Khan, Salman and Mahmoud, Abdulrahman},
+  title     = {CASS: Nvidia to AMD Transpilation with Data, Models, and Benchmark},
+  journal   = {NeurIPS},
+  year      = {2025},
+}</code></pre>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <a class="icon-link" href="#">
+                    <i class="fas fa-file-pdf"></i>
+                </a>
+                <a class="icon-link" href="https://github.com/cass-project" class="external-link">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                        <p>
+                            Website template adapted from <a href="https://nerfies.github.io">Nerfies</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
