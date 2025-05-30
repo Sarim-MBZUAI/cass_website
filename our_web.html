@@ -148,20 +148,20 @@
                             and Benchmark</h1>
                         <div class="is-size-5 publication-authors">
                             <span class="author-block">
-                                <a href="#">Ahmed Heakl</a><sup>1</sup>,</span>
+                                <a href="https://www.linkedin.com/in/ahmed-heakl/?originalSubdomain=ae">Ahmed Heakl</a><sup>1</sup>,</span>
                             <span class="author-block">
-                                <a href="#">Gustavo Bertolo Stahl</a><sup>1</sup>,</span>
+                                <a href="https://www.linkedin.com/in/sarim-hashmi-b10b35136/">Sarim Hashmi</a><sup>1</sup>,</span>
                             <span class="author-block">
-                                <a href="#">Sarim Hashmi</a><sup>1</sup>,
+                                <a href="https://www.linkedin.com/in/gustavostahl/">Gustavo Bertolo Stahl</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
-                                <a href="#">Seung Hun Eddie Han</a><sup>1</sup>,
+                                <a href="https://www.linkedin.com/in/eddieseunghunhan/">Seung Hun Eddie Han</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
-                                <a href="#">Salman Khan</a><sup>1</sup>,
+                                <a href="https://www.linkedin.com/in/salman-khan-12184128/">Salman Khan</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
-                                <a href="#">Abdulrahman Mahmoud</a><sup>1</sup>
+                                <a href="https://www.linkedin.com/in/abdulrahman-mahmoud-a9206b57/">Abdulrahman Mahmoud</a><sup>1</sup>
                             </span>
                         </div>
 
@@ -172,16 +172,16 @@
                         <div class="column has-text-centered">
                             <div class="publication-links">
                                 <!-- PDF Link. -->
-                                <span class="link-block">
-                                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                <!-- <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2505.16968" class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fas fa-file-pdf"></i>
                                         </span>
                                         <span>Paper</span>
                                     </a>
-                                </span>
+                                </span> -->
                                 <span class="link-block">
-                                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                    <a href="https://arxiv.org/abs/2505.16968" class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="ai ai-arxiv"></i>
                                         </span>
@@ -189,17 +189,17 @@
                                     </a>
                                 </span>
                                 <!-- Video Link. -->
-                                <span class="link-block">
+                                <!-- <span class="link-block">
                                     <a href="#" class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fab fa-youtube"></i>
                                         </span>
                                         <span>Video</span>
                                     </a>
-                                </span>
+                                </span> -->
                                 <!-- Code Link. -->
                                 <span class="link-block">
-                                    <a href="https://github.com/cass-project/cass"
+                                    <a href="https://github.com/GustavoStahl/CASS"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fab fa-github"></i>
@@ -209,13 +209,21 @@
                                 </span>
                                 <!-- Dataset Link. -->
                                 <span class="link-block">
-                                    <a href="https://huggingface.co/datasets/cass-project/cass"
+                                    <a href="https://huggingface.co/datasets/MBZUAI/cass"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fas fa-database"></i>
                                         </span>
                                         <span>Dataset</span>
                                     </a>
+                                    <span class="link-block">
+                                        <a href="https://huggingface.co/datasets/MBZUAI/cass-bench" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </span>
+                                            <span>CASS-Bench</span>
+                                        </a>
+                                        </span>
                             </div>
                         </div>
                     </div>
@@ -250,20 +258,20 @@
                             We introduce CASS, the first large-scale dataset and model suite for cross-architecture GPU
                             code transpilation, targeting both source-level (CUDA ↔ HIP) and assembly-level (Nvidia SASS
                             ↔ AMD RDNA3) translation.
-                        </p>
-                        <p>
-                            The dataset comprises 70k verified code pairs across host and device, addressing a critical
+                     
+                            The dataset comprises <b>70k</b> verified code pairs across host and device, addressing a critical
                             gap in low-level GPU code portability. Leveraging this resource, we train the CASS family of
-                            domain-specific language models, achieving 95% source translation accuracy and 37.5%
+                            domain-specific language models, achieving <b>95%</b> source translation accuracy and <b>37.5%</b>
                             assembly translation accuracy, substantially outperforming commercial baselines such as
                             GPT-4o, Claude, and Hipify.
-                        </p>
-                        <p>
-                            Our generated code matches native performance in over 85% of test cases, preserving runtime
+                        
+                            Our generated code matches native performance in over <b>85%</b> of test cases, preserving runtime
                             and memory behavior. To support rigorous evaluation, we introduce CASS-Bench, a curated
-                            benchmark spanning 16 GPU domains with ground-truth execution. All data, models, and
+                            benchmark spanning <b>16</b> GPU domains with ground-truth execution. All data, models, and
                             evaluation tools are released as open source to foster progress in GPU compiler tooling,
                             binary compatibility, and LLM-guided hardware translation.
+
+                            
                         </p>
                     </div>
                 </div>
@@ -292,7 +300,22 @@
                 </div>
             </div>
             <!--/ CASS Dataset. -->
-
+            <div class="columns is-centered">
+                <div class="column">
+                    <h2 class="title is-3">CASS-Bench</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            CASS-Bench is a 40-sample evaluation suite spanning 16 GPU-centric domains, each
+                            represented
+                            by 1-5 curated prompts. The benchmark includes parallel algorithms, image processing,
+                            scientific computing, linear algebra, deep learning, and more.
+                        </p>
+                        <figure class="image">
+                            <img src="static\images\cuda_prompts_by_category_page-0001.jpg" alt="CASS-Bench Domains" class="pipeline-image">
+                        </figure>
+                    </div>
+                </div>
+            </div>
             <!-- Results. -->
             <div class="columns is-centered">
                 <div class="column">
@@ -412,22 +435,7 @@
             <!--/ Results. -->
 
             <!-- CASS-Bench. -->
-            <div class="columns is-centered">
-                <div class="column">
-                    <h2 class="title is-3">CASS-Bench</h2>
-                    <div class="content has-text-justified">
-                        <p>
-                            CASS-Bench is a 40-sample evaluation suite spanning 16 GPU-centric domains, each
-                            represented
-                            by 1-5 curated prompts. The benchmark includes parallel algorithms, image processing,
-                            scientific computing, linear algebra, deep learning, and more.
-                        </p>
-                        <figure class="image">
-                            <img src="static\images\cuda_prompts_by_category_page-0001.jpg" alt="CASS-Bench Domains" class="pipeline-image">
-                        </figure>
-                    </div>
-                </div>
-            </div>
+
             <!--/ CASS-Bench. -->
         </div>
     </section>
@@ -435,11 +443,14 @@
     <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
-            <pre><code>@article{heakl2025cass,
-  author    = {Heakl, Ahmed and Stahl, Gustavo Bertolo and Hashmi, Sarim and Han, Seung Hun Eddie and Khan, Salman and Mahmoud, Abdulrahman},
-  title     = {CASS: Nvidia to AMD Transpilation with Data, Models, and Benchmark},
-  journal   = {NeurIPS},
-  year      = {2025},
+<pre><code>@misc{heakl2025cassnvidiaamdtranspilation,
+ title={CASS: Nvidia to AMD Transpilation with Data, Models, and Benchmark}, 
+ author={Ahmed Heakl and Sarim Hashmi and Gustavo Bertolo Stahl and Seung Hun Eddie Han and Salman Khan and Abdulrahman Mahmoud},
+ year={2025},
+ eprint={2505.16968},
+ archivePrefix={arXiv},
+ primaryClass={cs.AR},
+ url={https://arxiv.org/abs/2505.16968}, 
 }</code></pre>
         </div>
     </section>
@@ -447,10 +458,10 @@
     <footer class="footer">
         <div class="container">
             <div class="content has-text-centered">
-                <a class="icon-link" href="#">
+                <!-- <a class="icon-link" href="#">
                     <i class="fas fa-file-pdf"></i>
-                </a>
-                <a class="icon-link" href="https://github.com/cass-project" class="external-link">
+                </a> -->
+                <a class="icon-link" href="https://github.com/GustavoStahl/CASS" class="external-link">
                     <i class="fab fa-github"></i>
                 </a>
             </div>
